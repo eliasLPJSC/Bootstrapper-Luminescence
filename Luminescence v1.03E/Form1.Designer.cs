@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2DragControl2 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -56,11 +57,11 @@
             this.guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.scriptHubPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblScriptHubTitle = new System.Windows.Forms.Label();
             this.flowScriptContainer = new Luminescence_v1._03E.NoScrollFlowLayoutPanel();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblScriptHubTitle = new System.Windows.Forms.Label();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.settingsPanel.SuspendLayout();
@@ -442,6 +443,13 @@
             this.scriptHubPanel.TabIndex = 15;
             this.scriptHubPanel.Visible = false;
             // 
+            // guna2Panel2
+            // 
+            this.guna2Panel2.Location = new System.Drawing.Point(593, 20);
+            this.guna2Panel2.Name = "guna2Panel2";
+            this.guna2Panel2.Size = new System.Drawing.Size(38, 350);
+            this.guna2Panel2.TabIndex = 0;
+            // 
             // btnSearch
             // 
             this.btnSearch.Animated = true;
@@ -484,6 +492,16 @@
             this.txtSearch.TabIndex = 2;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
+            // flowScriptContainer
+            // 
+            this.flowScriptContainer.AutoScroll = true;
+            this.flowScriptContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowScriptContainer.Location = new System.Drawing.Point(36, 56);
+            this.flowScriptContainer.Name = "flowScriptContainer";
+            this.flowScriptContainer.Size = new System.Drawing.Size(595, 300);
+            this.flowScriptContainer.TabIndex = 1;
+            this.flowScriptContainer.WrapContents = false;
+            // 
             // lblScriptHubTitle
             // 
             this.lblScriptHubTitle.AutoSize = true;
@@ -495,23 +513,6 @@
             this.lblScriptHubTitle.TabIndex = 0;
             this.lblScriptHubTitle.Text = "Script Hub";
             this.lblScriptHubTitle.Click += new System.EventHandler(this.lblScriptHubTitle_Click);
-            // 
-            // flowScriptContainer
-            // 
-            this.flowScriptContainer.AutoScroll = true;
-            this.flowScriptContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowScriptContainer.Location = new System.Drawing.Point(36, 56);
-            this.flowScriptContainer.Name = "flowScriptContainer";
-            this.flowScriptContainer.Size = new System.Drawing.Size(595, 300);
-            this.flowScriptContainer.TabIndex = 1;
-            this.flowScriptContainer.WrapContents = false;
-            // 
-            // guna2Panel2
-            // 
-            this.guna2Panel2.Location = new System.Drawing.Point(593, 20);
-            this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(38, 350);
-            this.guna2Panel2.TabIndex = 0;
             // 
             // Form1
             // 
@@ -529,8 +530,9 @@
             this.Controls.Add(this.guna2Button2);
             this.Controls.Add(this.guna2Button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Luminescence";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.guna2Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();

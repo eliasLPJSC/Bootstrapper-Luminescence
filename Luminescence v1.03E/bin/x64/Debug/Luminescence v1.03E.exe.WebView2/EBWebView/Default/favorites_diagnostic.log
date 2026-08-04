@@ -75,3 +75,13 @@
 2026-08-04 13:11:29.736: [INFO] BookmarksLoadDropped droppedNodes=0
 2026-08-04 13:11:29.737: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
 2026-08-04 13:11:59.552: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-04 13:40:53.480: [INFO] CurrentProfilePath: C:\Users\seif9\source\repos\Luminescence v1.03E\Luminescence v1.03E\bin\x64\Debug\Luminescence v1.03E.exe.WebView2\EBWebView\Default
+2026-08-04 13:40:53.480: [INFO] Profiles total count: 1
+2026-08-04 13:40:53.480: [INFO] Profile: name=Profil 1 path=C:\Users\seif9\source\repos\Luminescence v1.03E\Luminescence v1.03E\bin\x64\Debug\Luminescence v1.03E.exe.WebView2\EBWebView\Default lastActive=2026-08-04T13:38:58.598Z
+2026-08-04 13:40:53.480: [INFO] LastUsedProfileDir: C:\Users\seif9\source\repos\Luminescence v1.03E\Luminescence v1.03E\bin\x64\Debug\Luminescence v1.03E.exe.WebView2\EBWebView\Default
+2026-08-04 13:40:53.480: [INFO] MostRecentlyActiveProfile: name=Profil 1 path=C:\Users\seif9\source\repos\Luminescence v1.03E\Luminescence v1.03E\bin\x64\Debug\Luminescence v1.03E.exe.WebView2\EBWebView\Default lastActive=2026-08-04T13:38:58.598Z
+2026-08-04 13:40:53.480: [INFO] OnDoneLoading sync enabled: 0
+2026-08-04 13:40:53.480: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-08-04 13:40:53.480: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-08-04 13:40:53.480: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-04 13:40:56.853: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
