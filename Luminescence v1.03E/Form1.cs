@@ -59,8 +59,12 @@ namespace Luminescence_v1._03E
 
             if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
             {
-                configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
-                tabsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tabs.json");
+                // Isolate save paths to the current user's AppData folder so they don't overwrite each other
+                string appDataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Luminescence");
+                Directory.CreateDirectory(appDataDir);
+
+                configFilePath = Path.Combine(appDataDir, "config.json");
+                tabsFilePath = Path.Combine(appDataDir, "tabs.json");
 
                 LoadAppSettings();
                 LoadEditorSession();
@@ -1174,10 +1178,8 @@ namespace Luminescence_v1._03E
         {
             try
             {
-                // Attach to the game process using Quorum API
                 QuorumAPI.QuorumModule.AttachAPI();
 
-                // Robust notification script featuring game load verification, custom icon ID, and retry logic for SetCore
                 string notificationScript = @"
                     task.spawn(function()
                         pcall(function()
@@ -1207,7 +1209,6 @@ namespace Luminescence_v1._03E
                     end);
                 ";
 
-                // Wait briefly for attachment stability before executing the script payload
                 await Task.Delay(2000);
                 QuorumAPI.QuorumModule.ExecuteScript(notificationScript);
             }
@@ -1619,9 +1620,6 @@ namespace Luminescence_v1._03E
             }
         }
 
-        // =========================================================================
-        // 2. HELPER CLASSES MOVED TO THE BOTTOM (After Form1)
-        // =========================================================================
         public class AppSettings
         {
             public bool AlwaysOnTop { get; set; } = false;
