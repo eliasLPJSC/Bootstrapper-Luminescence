@@ -1,0 +1,10 @@
+{
+  "ActiveTabId": "tab_default",
+  "Tabs": [
+    {
+      "Id": "tab_default",
+      "Title": "Tab 1",
+      "Content": "print(\u0022Hello, Luminescence!\u0022)"
+    }
+  ]
+}

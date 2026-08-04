@@ -1,0 +1,36 @@
+[2026-08-04 13:18:57.071] [Xeno] [trace] Xeno is only maintained by Rizve. If you find any bugs, have any question, or just want to chat email me rizve@xeno.onl or DM me on Discord: .rizve
+[2026-08-04 13:18:57.071] [Xeno] [info] Version: Xeno - v1.3.55
+[2026-08-04 13:18:57.071] [Xeno] [info] Log file: C:\Users\seif9\source\repos\Luminescence v1.03E\Luminescence v1.03E\bin\x64\Debug\logs\2026-08-04_13-18-57.log
+[2026-08-04 13:18:57.073] [Xeno] [debug] Client Checker thread: 0x2bc25fdb90
+[2026-08-04 13:18:57.073] [Xeno] [debug] Xeno Caching thread: 0x2bc25fdb80
+[2026-08-04 13:18:57.073] [Xeno] [debug] WebSockets Cleaner thread: 0x2bc25fdb70
+[2026-08-04 13:18:57.073] [Cache] [info] Caching file: C:\Users\seif9\AppData\Local\Xeno\XENO_CACHE.bin
+[2026-08-04 13:18:57.073] [Xeno] [debug] Xeno Server thread: 0x2bc25fdb60
+[2026-08-04 13:18:57.073] [Server] [info] Xeno Server is Live on http://localhost:3110
+[2026-08-04 13:18:57.073] [Server] [info] Visit http://localhost:3110 to view any additional information
+[2026-08-04 13:18:57.083] [Xeno] [info] Creating new RBXClient: 11756
+[2026-08-04 13:18:57.083] [RBXClient] [info] [11756]: Initializing...
+[2026-08-04 13:18:57.083] [RBXClient] [info] [11756]: Version: version-145f189a6a974303
+[2026-08-04 13:18:57.083] [Xeno] [debug] Created RBXClient instance @0x14f9ed3ab80
+[2026-08-04 13:18:57.083] [Xeno] [info] Successfully created RBXClient: 11756
+[2026-08-04 13:18:57.083] [RBXClient] [trace] [11756]: Attempting to retrieve RBXClient data...
+[2026-08-04 13:18:57.135] [RBXClient] [trace] [11756]: Successfully retrieved RBXClient data (Primary)
+[2026-08-04 13:18:57.135] [RBXClient] [error] [11756]: Offsets for version "version-145f189a6a974303" not found. Using offsets from default version: version-36a2600cebf1487d. Please report this to me (Rizve)
+[2026-08-04 13:18:57.135] [RBXClient] [debug] [11756]: Fetching DataModel...
+[2026-08-04 13:18:57.180] [RBXClient] [debug] [11756]: 	String: 0x1eca1f00b88
+[2026-08-04 13:18:57.180] [RBXClient] [debug] [11756]: 	RenderView: 0x1ec8b696880
+[2026-08-04 13:18:57.412] [RBXClient] [debug] [11756]: 2678 candidates found for the instruction
+[2026-08-04 13:18:57.413] [RBXClient] [debug] [11756]:  Instruction address: 0x1ece22ceed3
+[2026-08-04 13:18:57.413] [RBXClient] [debug] [11756]: Bytecode Patch Watcher thread: 0x2bcb5ffa10
+[2026-08-04 13:18:57.414] [RBXClient] [debug] [11756]: DataModel (Ugc): 0x1ec99aeb648
+[2026-08-04 13:18:57.415] [RBXClient] [debug] [11756]: LocalPlayer: 0x1ec87bc6080
+[2026-08-04 13:18:57.415] [RBXClient] [debug] [acgplayerfan12121 (11756)]: LocalPlayer Name: 'acgplayerfan12121'
+[2026-08-04 13:18:57.415] [RBXClient] [trace] [acgplayerfan12121 (11756)]: Attaching in-game using translation module.
+[2026-08-04 13:18:57.545] [RBXClient] [trace] [acgplayerfan12121 (11756)]: Intercepted translation module @0x1ec9ec9d600
+[2026-08-04 13:18:57.584] [RBXClient] [trace] [acgplayerfan12121 (11756)][::CRefresh]: Client DataModel refreshed
+[2026-08-04 13:18:57.591] [RBXClient] [trace] [acgplayerfan12121 (11756)][::HandleAutoExecute]: Executed 1 script(s) from autoexec directory
+[2026-08-04 13:18:57.598] [RBXClient] [trace] [acgplayerfan12121 (11756)]: Attach ping received from client "acgplayerfan12121", This indicates everything was successful.
+[2026-08-04 13:19:17.104] [Execution] [error] [11756]: Failed to compile (this is a problem with your script): :1: Incomplete statement: expected assignment or a function call
+[2026-08-04 13:19:17.307] [Execution] [error] [11756]: Failed to compile (this is a problem with your script): :1: Incomplete statement: expected assignment or a function call
+[2026-08-04 13:19:17.481] [Execution] [error] [11756]: Failed to compile (this is a problem with your script): :1: Incomplete statement: expected assignment or a function call
+[2026-08-04 13:19:17.647] [Execution] [error] [11756]: Failed to compile (this is a problem with your script): :1: Incomplete statement: expected assignment or a function call
