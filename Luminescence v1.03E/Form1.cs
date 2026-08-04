@@ -1169,10 +1169,36 @@ namespace Luminescence_v1._03E
                 UseShellExecute = true
             });
         }
-        private void guna2Button3_Click(object sender, EventArgs e)
+
+        // =========================================================================
+        // INJECTION & SUCCESS NOTIFICATION LOGIC
+        // =========================================================================
+        private async void guna2Button3_Click(object sender, EventArgs e)
         {
-            QuorumAPI.QuorumModule.AttachAPI();
+            try
+            {
+                // Attach to the game process using Quorum API
+                QuorumAPI.QuorumModule.AttachAPI();
+
+                // Notification script to execute upon successful injection
+                string notificationScript = @"
+                    game:GetService('StarterGui'):SetCore('SendNotification', {
+                        Title = '[ Luminescence ]',
+                        Text = 'Succesfully Injected',
+                        Icon = 'rbxthumb://type=Asset&id=76675993626416&w=150&h=150'
+                    });
+                ";
+
+                // Wait briefly for attachment initialization before running the script
+                await Task.Delay(1500);
+                QuorumAPI.QuorumModule.ExecuteScript(notificationScript);
+            }
+            catch (Exception ex)
+            {
+                FormMessageBox.Show("Failed to attach or execute notification: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         private async void guna2Button8_Click(object sender, EventArgs e)
         {
             if (webView21 != null && webView21.CoreWebView2 != null)
