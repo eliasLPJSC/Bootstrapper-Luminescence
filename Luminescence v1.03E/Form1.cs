@@ -1170,9 +1170,6 @@ namespace Luminescence_v1._03E
             });
         }
 
-        // =========================================================================
-        // INJECTION & SUCCESS NOTIFICATION LOGIC
-        // =========================================================================
         private async void guna2Button3_Click(object sender, EventArgs e)
         {
             try
@@ -1180,17 +1177,38 @@ namespace Luminescence_v1._03E
                 // Attach to the game process using Quorum API
                 QuorumAPI.QuorumModule.AttachAPI();
 
-                // Notification script to execute upon successful injection
+                // Robust notification script featuring game load verification, custom icon ID, and retry logic for SetCore
                 string notificationScript = @"
-                    game:GetService('StarterGui'):SetCore('SendNotification', {
-                        Title = '[ Luminescence ]',
-                        Text = 'Succesfully Injected',
-                        Icon = 'rbxthumb://type=Asset&id=76675993626416&w=150&h=150'
-                    });
+                    task.spawn(function()
+                        pcall(function()
+                            if not game:IsLoaded() then
+                                game.Loaded:Wait()
+                            end
+                            
+                            local StarterGui = game:GetService('StarterGui')
+                            local success = false
+                            local attempts = 0
+                            
+                            while not success and attempts < 25 do
+                                attempts = attempts + 1
+                                success = pcall(function()
+                                    StarterGui:SetCore('SendNotification', {
+                                        Title = '[ Luminescence ]',
+                                        Text = 'Successfully Injected',
+                                        Duration = 5,
+                                        Icon = 'rbxthumb://type=Asset&id=76675993626416&w=150&h=150'
+                                    })
+                                end)
+                                if not success then
+                                    task.wait(0.5)
+                                end
+                            end
+                        end)
+                    end);
                 ";
 
-                // Wait briefly for attachment initialization before running the script
-                await Task.Delay(1500);
+                // Wait briefly for attachment stability before executing the script payload
+                await Task.Delay(2000);
                 QuorumAPI.QuorumModule.ExecuteScript(notificationScript);
             }
             catch (Exception ex)
