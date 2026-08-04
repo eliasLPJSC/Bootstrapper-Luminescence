@@ -170,7 +170,7 @@ namespace Luminescence_v1._03E
             {
                 Id = "tab_default",
                 Title = "Tab 1",
-                Content = ""
+                Content = "print(\"Hello, Luminescence!\")"
             });
             return state;
         }
