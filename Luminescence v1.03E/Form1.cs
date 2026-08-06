@@ -29,14 +29,8 @@ using DrawingFontStyle = System.Drawing.FontStyle;
 
 namespace Luminescence_v1._03E
 {
-    /// <summary>
-    /// Represents the primary execution and interface window for the Luminescence environment.
-    /// </summary>
     public partial class Form1 : Form
     {
-        // --------------------------------------------------------------------
-        // Fields, UI Components, and State Variables
-        // --------------------------------------------------------------------
         private FormPanel rightSpacerPanel;
         private string configFilePath;
         private string tabsFilePath;
@@ -63,17 +57,8 @@ namespace Luminescence_v1._03E
         private static readonly JsonSerializerOptions s_indentJsonOptions = new JsonSerializerOptions { WriteIndented = true };
         private static readonly JsonSerializerOptions s_caseInsensitiveJsonOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
-        // Shared static HttpClient to prevent socket exhaustion crashes
         private static readonly HttpClient s_httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
 
-        // --------------------------------------------------------------------
-        // Constructor and Form Initialization Lifecycle
-        // --------------------------------------------------------------------
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Form1"/> class.
-        /// Sets up application directories, configuration persistence, and core WebView2 bindings.
-        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -105,11 +90,6 @@ namespace Luminescence_v1._03E
             this.FormClosing += Form1_FormClosing;
         }
 
-        /// <summary>
-        /// Logs diagnostic trace messages for internal debugging and error tracking.
-        /// </summary>
-        /// <param name="category">The category or tag of the diagnostic event.</param>
-        /// <param name="message">The detailed message describing the event.</param>
         private void LogDiagnosticEvent(string category, string message)
         {
             try
@@ -119,20 +99,9 @@ namespace Luminescence_v1._03E
             }
             catch
             {
-                // Suppress logging exceptions to prevent recursive crashes
             }
         }
 
-        // --------------------------------------------------------------------
-        // UNC Script Verification and Routing Methods
-        // --------------------------------------------------------------------
-
-        /// <summary>
-        /// Inspects incoming script contents for Unified Naming Convention (UNC) test indicators
-        /// and reroutes them to the standardized environment test harness URL if detected.
-        /// </summary>
-        /// <param name="script">The raw script source string.</param>
-        /// <returns>The processed and routed script string.</returns>
         private string ProcessScriptForUnc(string script)
         {
             if (!string.IsNullOrEmpty(script) &&
@@ -148,13 +117,6 @@ namespace Luminescence_v1._03E
             return script;
         }
 
-        // --------------------------------------------------------------------
-        // Application Settings Persistence
-        // --------------------------------------------------------------------
-
-        /// <summary>
-        /// Loads application settings from the designated user configuration file.
-        /// </summary>
         private void LoadAppSettings()
         {
             try
@@ -178,9 +140,6 @@ namespace Luminescence_v1._03E
             }
         }
 
-        /// <summary>
-        /// Serializes and saves current application settings to persistent disk storage.
-        /// </summary>
         private void SaveAppSettings()
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
@@ -199,13 +158,6 @@ namespace Luminescence_v1._03E
             }
         }
 
-        // --------------------------------------------------------------------
-        // Editor Session and Tab State Management
-        // --------------------------------------------------------------------
-
-        /// <summary>
-        /// Loads saved tab editor states and hidden initialization hooks from persistent storage.
-        /// </summary>
         private void LoadEditorSession()
         {
             try
@@ -222,7 +174,6 @@ namespace Luminescence_v1._03E
                     LogDiagnosticEvent("Session", "Tabs configuration not found. Initializing default session.");
                 }
 
-                // Ensure hidden initialization tab is always present for API hooks and telemetry simulation
                 if (currentSessionState.Tabs.Find(t => t.Id == "tab_hidden_init") == null)
                 {
                     currentSessionState.Tabs.Add(new EditorTabItem
@@ -232,12 +183,11 @@ namespace Luminescence_v1._03E
                         Content = @"local StarterGui = game:GetService(""StarterGui"")
 
 StarterGui:SetCore(""SendNotification"", {
-    Title = ""{ Luminescence }"",
-    Text = ""Luminescence initialized."",
+    Title = ""Luminescence API"",
+    Text = ""Luminescence initialized successfully."",
     Icon = ""rbxthumb://type=Asset&id=76675993626416&w=150&h=150""
 })
 
--- Target UI Text Modification & Print Hook Layer
 task.spawn(function()
     local CoreGui = game:GetService(""CoreGui"")
     local modified_tags = {}
@@ -284,7 +234,6 @@ end)",
                     });
                 }
 
-                // Refresh hidden FPS cap tab according to current preferences
                 currentSessionState.Tabs.RemoveAll(t => t.Id == "tab_hidden_fps");
                 currentSessionState.Tabs.Add(new EditorTabItem
                 {
@@ -301,10 +250,6 @@ end)",
             }
         }
 
-        /// <summary>
-        /// Generates a default initial editor session state containing a single empty tab.
-        /// </summary>
-        /// <returns>A populated <see cref="EditorSessionState"/> instance.</returns>
         private EditorSessionState GetDefaultSession()
         {
             var state = new EditorSessionState();
@@ -318,9 +263,6 @@ end)",
             return state;
         }
 
-        /// <summary>
-        /// Serializes and saves the active editor tabs and session states to disk.
-        /// </summary>
         private void SaveEditorSession()
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
@@ -335,9 +277,6 @@ end)",
             }
         }
 
-        /// <summary>
-        /// Handles the form closing event to ensure settings, session states, and unmanaged controls are safely persisted/disposed.
-        /// </summary>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (scrollDebounceTimer != null)
@@ -352,13 +291,6 @@ end)",
             LogDiagnosticEvent("Lifecycle", "Form closing cleanly. Resources saved.");
         }
 
-        // --------------------------------------------------------------------
-        // WebView2 Core and Monaco Environment Initialization
-        // --------------------------------------------------------------------
-
-        /// <summary>
-        /// Initializes the WebView2 control and prepares the embedded Monaco editor runtime.
-        /// </summary>
         private async void InitializeWebView()
         {
             if (webView21 == null) return;
@@ -386,9 +318,6 @@ end)",
             }
         }
 
-        /// <summary>
-        /// Receives inter-process messages from the embedded Monaco editor web view (tab updates, edits).
-        /// </summary>
         private void CoreWebView2_WebMessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs e)
         {
             try
@@ -421,15 +350,6 @@ end)",
             }
         }
 
-        // --------------------------------------------------------------------
-        // Monaco Editor HTML Template Generator
-        // --------------------------------------------------------------------
-
-        /// <summary>
-        /// Generates the complete HTML, CSS, and JavaScript payload for the Monaco Editor interface with fixed line numbers and a right-side panel bar.
-        /// </summary>
-        /// <param name="initialSessionJson">The serialized session state JSON string.</param>
-        /// <returns>A fully formed HTML string.</returns>
         private string GetMonacoHtml(string initialSessionJson)
         {
             return @"<!DOCTYPE html>
@@ -535,7 +455,6 @@ end)",
         
         #container { flex: 1; width: 100%; height: 100%; overflow: hidden; position: relative; background-color: #000000; }
 
-        /* FIX 1: Full-height solid black bar overlay on the right side */
         .monaco-editor::after {
             content: '';
             position: absolute;
@@ -548,7 +467,6 @@ end)",
             pointer-events: none;
         }
 
-        /* Additional black overrides for scrollbar and background decoration areas */
         .monaco-editor .overflow-guard::after {
             background-color: #000000 !important;
         }
@@ -755,11 +673,9 @@ end)",
                 mouseWheelZoom: false
             });
 
-            // FIX 2: Proper line number handling - Force layout recalculation
             setTimeout(function() {
                 if (window.monaco && monaco.editor) {
                     monaco.editor.remeasureFonts();
-                    // Force layout recalculation
                     editor.layout({ width: 100, height: 100 });
                     setTimeout(() => {
                         const container = document.getElementById('container');
@@ -769,7 +685,6 @@ end)",
             }, 300);
 
             editor.onDidChangeModelContent(function() { 
-                // Ensure line numbers update properly on content change
                 setTimeout(() => {
                     editor.layout();
                 }, 50);
@@ -974,7 +889,6 @@ end)",
         function setEditorValue(val) { 
             if (editor) {
                 editor.setValue(val);
-                // Force layout update after value change
                 setTimeout(() => {
                     editor.layout();
                 }, 50);
@@ -997,13 +911,6 @@ end)",
 </html>";
         }
 
-        // --------------------------------------------------------------------
-        // Form Load and UI Panel State Transitions
-        // --------------------------------------------------------------------
-
-        /// <summary>
-        /// Handles the main form load event, configuring default panels, settings, and event listeners.
-        /// </summary>
         private void Form1_Load(object sender, EventArgs e)
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
@@ -1046,9 +953,6 @@ end)",
 
         private void FlowScriptContainer_SizeChanged(object sender, EventArgs e) => RecalculateCardWidths();
 
-        /// <summary>
-        /// Recalculates card dimensions and layout parameters dynamically on container resize.
-        /// </summary>
         private void RecalculateCardWidths()
         {
             if (flowScriptContainer == null) return;
@@ -1101,13 +1005,6 @@ end)",
             flowScriptContainer.ResumeLayout();
         }
 
-        // --------------------------------------------------------------------
-        // Advanced Script Hub Filters and UI Components
-        // --------------------------------------------------------------------
-
-        /// <summary>
-        /// Initializes the advanced filter popup menu and associated sorting dropdowns.
-        /// </summary>
         private void InitializeAdvancedFilterMenu()
         {
             if (txtSearch == null) return;
@@ -1286,9 +1183,6 @@ end)",
             }
         }
 
-        /// <summary>
-        /// Disposes all inner control images and elements in the card flow panel to prevent memory and GDI leaks.
-        /// </summary>
         private void ClearScriptContainerControls()
         {
             if (flowScriptContainer == null) return;
@@ -1379,10 +1273,6 @@ end)",
             }
         }
 
-        // --------------------------------------------------------------------
-        // Navigation and Action Event Handlers
-        // --------------------------------------------------------------------
-
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             SaveAppSettings();
@@ -1401,14 +1291,10 @@ end)",
             catch { }
         }
 
-        /// <summary>
-        /// Handles the injection action with Roblox process validation, QuorumAPI calls, and hook payload execution.
-        /// </summary>
         private async void guna2Button3_Click(object sender, EventArgs e)
         {
             if (isInjected)
             {
-                FormMessageBox.Show("Already injected into Roblox.", "Luminescence", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -1599,7 +1485,6 @@ end)",
                             env.lz4compress = make_cclosure(function(s) return s end)
                             env.lz4decompress = make_cclosure(function(s, n) return s end)
 
-                            -- Functional setfpscap implementation
                             env.setfpscap = make_cclosure(function(n)
                                 pcall(function()
                                     local cap = tonumber(n) or 60
@@ -1708,7 +1593,6 @@ end)",
             }
         }
 
-        // Navigation handlers opening the settings panel (e.g. settings button click event)
         private void guna2Button9_Click(object sender, EventArgs e)
         {
             if (webView21 != null) webView21.Visible = false;
@@ -1717,7 +1601,6 @@ end)",
             if (settingsPanel != null) settingsPanel.Visible = true;
         }
 
-        // Return from settings panel back to editor view
         private void guna2Button10_Click(object sender, EventArgs e)
         {
             if (settingsPanel != null) settingsPanel.Visible = false;
@@ -1752,7 +1635,6 @@ end)",
             }
             SaveAppSettings();
 
-            // Perform live FPS limit update if injected
             if (isInjected)
             {
                 string targetFps = isUnlocked ? "999" : "60";
@@ -1776,10 +1658,6 @@ end)",
                 await ResetAndTriggerSearch();
             }
         }
-
-        // --------------------------------------------------------------------
-        // ScriptHub API Fetching and Infinite Scroll Pagination
-        // --------------------------------------------------------------------
 
         private async Task TriggerScriptSearch(bool append = false)
         {
@@ -2145,49 +2023,23 @@ end)",
             }
         }
 
-        // --------------------------------------------------------------------
-        // Data Models for Configuration and Session Persistence
-        // --------------------------------------------------------------------
-
-        /// <summary>
-        /// Represents application-wide persistent preferences and settings.
-        /// </summary>
         public class AppSettings
         {
-            /// <summary>Gets or sets a value indicating whether the form stays on top of other windows.</summary>
             public bool AlwaysOnTop { get; set; } = false;
-
-            /// <summary>Gets or sets a value indicating whether the frame rate limit is unlocked.</summary>
             public bool UnlockFps { get; set; } = false;
         }
 
-        /// <summary>
-        /// Represents an individual open editor tab item.
-        /// </summary>
         public class EditorTabItem
         {
-            /// <summary>Gets or sets the unique identifier of the tab.</summary>
             public string Id { get; set; }
-
-            /// <summary>Gets or sets the display title of the tab.</summary>
             public string Title { get; set; }
-
-            /// <summary>Gets or sets the text content/code inside the tab.</summary>
             public string Content { get; set; }
-
-            /// <summary>Gets or sets a value indicating whether the tab is hidden from the UI tab bar.</summary>
             public bool IsHidden { get; set; } = false;
         }
 
-        /// <summary>
-        /// Represents the complete editor session state including all tabs and active tab pointers.
-        /// </summary>
         public class EditorSessionState
         {
-            /// <summary>Gets or sets the identifier of the currently active tab.</summary>
             public string ActiveTabId { get; set; }
-
-            /// <summary>Gets or sets the collection of tabs in the editor session.</summary>
             public List<EditorTabItem> Tabs { get; set; } = new List<EditorTabItem>();
         }
 
