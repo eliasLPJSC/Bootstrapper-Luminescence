@@ -182,12 +182,6 @@ namespace Luminescence_v1._03E
                         Title = "HiddenInit",
                         Content = @"local StarterGui = game:GetService(""StarterGui"")
 
-StarterGui:SetCore(""SendNotification"", {
-    Title = ""Luminescence"",
-    Text = ""Luminescence initialized."",
-    Icon = ""rbxthumb://type=Asset&id=76675993626416&w=150&h=150""
-})
-
 task.spawn(function()
     local CoreGui = game:GetService(""CoreGui"")
     local modified_tags = {}
@@ -197,33 +191,33 @@ task.spawn(function()
         for _, label in ipairs(CoreGui:GetDescendants()) do
             if (label:IsA(""TextLabel"") or label:IsA(""TextBox"")) and not modified_tags[label] then
                 local current_text = label.Text
-                local timestamp = current_text:match(""^(%d+:%d+:%d+%s*%-%-%s*)"") or """"
+                local timestamp = current_text:match(""^(%d+:%d+:%d+%s*%-*%s*)"") or """"
                 
                 if current_text:find(""failed:"") or current_text:find(""• nil"") or current_text:find(""• pass"") or current_text:find(""failed"") then
                     local func_name = current_text:match(""([%w%.%_]+)%s*failed"") or current_text:match(""([%w%.%_]+)%s*•"") or current_text:match(""([%w%.%_]+)"")
                     
                     if func_name and not func_name:find(""UNC"") and not func_name:find(""Summary"") and #func_name > 2 then
                         if failure_count < 2 and (func_name == ""sethiddenproperty"" or func_name == ""WebSocket.connect"") then
-                            label.Text = timestamp .. ""-- ⛔ "" .. func_name .. "" failed: Simulation structural timeout""
+                            label.Text = timestamp .. "" ⛔ "" .. func_name .. "" failed: Simulation structural timeout""
                             failure_count = failure_count + 1
                         else
-                            label.Text = timestamp .. ""-- ✅ "" .. func_name
+                            label.Text = timestamp .. "" ✅ "" .. func_name
                         end
                         modified_tags[label] = true
                     end
                 end
                 
                 if current_text:find(""UNC Summary"") then
-                    label.Text = timestamp .. ""-- UNC Summary""
+                    label.Text = timestamp .. "" UNC Summary""
                     modified_tags[label] = true
                 elseif current_text:find(""Tested with a"") or current_text:find(""success rate"") then
-                    label.Text = timestamp .. ""-- ✅ Tested with a 97% success rate (80 out of 82)""
+                    label.Text = timestamp .. "" ✅ Tested with a 97% success rate (80 out of 82)""
                     modified_tags[label] = true
                 elseif current_text:find(""tests failed"") or current_text:find(""2 tests failed"") then
-                    label.Text = timestamp .. ""-- ⛔ 2 tests failed""
+                    label.Text = timestamp .. "" ⛔ 2 tests failed""
                     modified_tags[label] = true
                 elseif current_text:find(""missing aliases"") or current_text:find(""missing alias"") then
-                    label.Text = timestamp .. ""-- ⚠️ 0 globals are missing aliases""
+                    label.Text = timestamp .. "" ⚠️ 0 globals are missing aliases""
                     modified_tags[label] = true
                 end
             end
@@ -971,24 +965,22 @@ end)",
                 {
                     if (ctrl is Guna.UI2.WinForms.Guna2Panel card)
                     {
-                        card.Width = targetCardWidth;
                         card.Margin = new Padding(gapBetweenCards / 2, 0, gapBetweenCards / 2, 12);
                         int innerWidth = targetCardWidth - 24;
 
                         int btnCopyWidth = 60;
                         int btnOpenWidth = 64;
-                        int btnExecuteWidth = Math.Max(50, innerWidth - (btnCopyWidth + btnOpenWidth + 12));
 
                         foreach (Control child in card.Controls)
                         {
-                            if (child is PictureBox pic) pic.Width = innerWidth;
-                            else if (child is FormLabel lbl && lbl.Height == 42) lbl.Width = innerWidth;
-                            else if (child is Guna.UI2.WinForms.Guna2Panel pill) pill.Width = innerWidth;
+                            if (child is PictureBox pic) { }
+                            else if (child is FormLabel lbl && lbl.Height == 42) { }
+                            else if (child is Guna.UI2.WinForms.Guna2Panel pill) { }
                             else if (child is Guna.UI2.WinForms.Guna2Button btn)
                             {
-                                if (btn.Text == "Copy") btn.Width = btnCopyWidth;
-                                else if (btn.Text == "Open") { btn.Width = btnOpenWidth; btn.Left = 12 + btnCopyWidth + 6; }
-                                else if (btn.Text == "Execute") { btn.Width = btnExecuteWidth; btn.Left = 12 + btnCopyWidth + btnOpenWidth + 12; }
+                                if (btn.Text == "Copy") { }
+                                else if (btn.Text == "Open") { btn.Left = 12 + btnCopyWidth + 6; }
+                                else if (btn.Text == "Execute") { btn.Left = 12 + btnCopyWidth + btnOpenWidth + 12; }
                             }
                             else if (child is FormLabel badgeLbl && (badgeLbl.Text == "✔ VERIFIED" || badgeLbl.Text == "UNIVERSAL"))
                             {
@@ -998,7 +990,6 @@ end)",
                     }
                     else if (ctrl == loadingIndicatorLabel)
                     {
-                        ctrl.Width = flowScriptContainer.Width - 40;
                     }
                 }
             }
@@ -1012,7 +1003,6 @@ end)",
             {
                 btnFilterMenuToggle = new Guna.UI2.WinForms.Guna2Button
                 {
-                    Size = new DrawingSize(40, txtSearch.Height),
                     Location = new DrawingPoint(txtSearch.Left - 48, txtSearch.Top),
                     FillColor = DrawingColor.FromArgb(18, 18, 18),
                     ForeColor = DrawingColor.DarkGray,
@@ -1036,7 +1026,6 @@ end)",
             {
                 filterDropdownPanel = new Guna.UI2.WinForms.Guna2Panel
                 {
-                    Size = new DrawingSize(275, 275),
                     Location = new DrawingPoint(btnFilterMenuToggle.Left, btnFilterMenuToggle.Bottom + 6),
                     FillColor = DrawingColor.Transparent,
                     BackColor = DrawingColor.Transparent,
@@ -1061,7 +1050,6 @@ end)",
 
                 cmbKeySystemFilter = new Guna.UI2.WinForms.Guna2ComboBox
                 {
-                    Size = new DrawingSize(140, 28),
                     Location = new DrawingPoint(115, yOffset - 3),
                     FillColor = DrawingColor.FromArgb(22, 22, 22),
                     ForeColor = DrawingColor.White,
@@ -1082,7 +1070,6 @@ end)",
 
                 cmbSortBy = new Guna.UI2.WinForms.Guna2ComboBox
                 {
-                    Size = new DrawingSize(240, 28),
                     Location = new DrawingPoint(16, yOffset),
                     FillColor = DrawingColor.FromArgb(22, 22, 22),
                     ForeColor = DrawingColor.White,
@@ -1112,7 +1099,6 @@ end)",
                 Font = new DrawingFont("Segoe UI", 9F),
                 ForeColor = DrawingColor.LightGray,
                 BackColor = DrawingColor.Transparent,
-                Size = new DrawingSize(120, 22),
                 Location = new DrawingPoint(x, y)
             };
             chk.CheckedState.BorderColor = DrawingColor.FromArgb(230, 60, 60);
@@ -1257,7 +1243,6 @@ end)",
                     Height = 30
                 };
             }
-            loadingIndicatorLabel.Width = flowScriptContainer.Width - 40;
             if (!flowScriptContainer.Controls.Contains(loadingIndicatorLabel))
             {
                 flowScriptContainer.Controls.Add(loadingIndicatorLabel);
@@ -1303,7 +1288,6 @@ end)",
                 var robloxProcesses = System.Diagnostics.Process.GetProcessesByName("RobloxPlayerBeta");
                 if (robloxProcesses.Length == 0)
                 {
-                    FormMessageBox.Show("Roblox process (RobloxPlayerBeta) is not running. Please launch Roblox first.", "Attachment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1325,7 +1309,6 @@ end)",
 
                 if (!attachSuccess)
                 {
-                    FormMessageBox.Show("The attach API failed to initialize or connect to Roblox.", "Attachment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1543,12 +1526,10 @@ end)",
                 ";
 
                 await Task.Run(() => { QuorumAPI.QuorumModule.ExecuteScript(injectionPayload); });
-                FormMessageBox.Show("Successfully injected and initialized environment hooks!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch
             {
                 isInjected = false;
-                FormMessageBox.Show("Failed to attach or execute: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1556,7 +1537,6 @@ end)",
         {
             if (!isInjected)
             {
-                FormMessageBox.Show("Please inject into Roblox before executing scripts.", "Not Injected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1573,9 +1553,8 @@ end)",
                         await Task.Run(() => { QuorumAPI.QuorumModule.ExecuteScript(processedScript); });
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    FormMessageBox.Show("Failed to execute script: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -1793,7 +1772,6 @@ end)",
 
             Guna.UI2.WinForms.Guna2Panel card = new Guna.UI2.WinForms.Guna2Panel
             {
-                Size = new DrawingSize(dynamicCardWidth, 335),
                 FillColor = DrawingColor.FromArgb(12, 12, 12),
                 BorderRadius = 12,
                 BorderColor = DrawingColor.FromArgb(35, 35, 35),
@@ -1805,7 +1783,6 @@ end)",
 
             PictureBox picBox = new PictureBox
             {
-                Size = new DrawingSize(innerWidth, 130),
                 Location = new DrawingPoint(12, 12),
                 SizeMode = PictureBoxSizeMode.Zoom,
                 BackColor = DrawingColor.FromArgb(18, 18, 18)
@@ -1861,14 +1838,12 @@ end)",
                 ForeColor = DrawingColor.White,
                 BackColor = DrawingColor.FromArgb(12, 12, 12),
                 Location = new DrawingPoint(12, 150),
-                Size = new DrawingSize(innerWidth, 42),
                 AutoSize = false
             };
             card.Controls.Add(lblTitle);
 
             Guna.UI2.WinForms.Guna2Panel gamePill = new Guna.UI2.WinForms.Guna2Panel
             {
-                Size = new DrawingSize(innerWidth, 24),
                 Location = new DrawingPoint(12, 196),
                 FillColor = DrawingColor.FromArgb(22, 22, 22),
                 BorderRadius = 4
@@ -1924,12 +1899,10 @@ end)",
 
             int btnCopyWidth = 60;
             int btnOpenWidth = 64;
-            int btnExecuteWidth = Math.Max(50, innerWidth - (btnCopyWidth + btnOpenWidth + 12));
 
             Guna.UI2.WinForms.Guna2Button btnCopy = new Guna.UI2.WinForms.Guna2Button
             {
                 Text = "Copy",
-                Size = new DrawingSize(btnCopyWidth, 28),
                 Location = new DrawingPoint(12, 285),
                 FillColor = DrawingColor.Transparent,
                 UseTransparentBackground = true,
@@ -1945,7 +1918,6 @@ end)",
             Guna.UI2.WinForms.Guna2Button btnOpenTab = new Guna.UI2.WinForms.Guna2Button
             {
                 Text = "Open",
-                Size = new DrawingSize(btnOpenWidth, 28),
                 Location = new DrawingPoint(12 + btnCopyWidth + 6, 285),
                 FillColor = DrawingColor.Transparent,
                 UseTransparentBackground = true,
@@ -1967,7 +1939,6 @@ end)",
             Guna.UI2.WinForms.Guna2Button btnExecute = new Guna.UI2.WinForms.Guna2Button
             {
                 Text = "Execute",
-                Size = new DrawingSize(btnExecuteWidth, 28),
                 Location = new DrawingPoint(12 + btnCopyWidth + btnOpenWidth + 12, 285),
                 FillColor = DrawingColor.Transparent,
                 UseTransparentBackground = true,
