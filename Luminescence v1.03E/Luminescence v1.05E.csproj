@@ -8,7 +8,7 @@
     <ProjectGuid>{8D6791F4-AB55-466E-8D63-53C9C7DB0EC7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Luminescence_v1._03E</RootNamespace>
-    <AssemblyName>Luminescence v1.03E</AssemblyName>
+    <AssemblyName>Luminescence v1.05E</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

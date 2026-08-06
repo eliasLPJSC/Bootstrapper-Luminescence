@@ -533,36 +533,33 @@ end)",
         }
         #add-tab-btn:hover { background: #141414; color: #ffffff; border-color: #222222; }
         
-        #container { flex: 1; width: 100%; height: 100%; overflow: hidden; position: relative; }
+        #container { flex: 1; width: 100%; height: 100%; overflow: hidden; position: relative; background-color: #000000; }
 
-        /* FIX 1: Big tall bar on the right side covering the edge of Monaco - NOW BLACK */
+        /* FIX 1: Full-height solid black bar overlay on the right side */
         .monaco-editor::after {
             content: '';
             position: absolute;
             top: 0;
             right: 0;
-            width: 15px;
-            height: 100%;
-            background-color: #000000;
-            z-index: 10;
+            width: 16px;
+            height: 100% !important;
+            background-color: #000000 !important;
+            z-index: 100;
             pointer-events: none;
         }
 
-        /* Additional black overrides for scrollbar area */
+        /* Additional black overrides for scrollbar and background decoration areas */
         .monaco-editor .overflow-guard::after {
             background-color: #000000 !important;
         }
 
         .monaco-scroll-decoration {
+            box-shadow: none !important;
             background-color: #000000 !important;
         }
 
-        .vs-dark .monaco-editor {
-            background-color: #000000;
-        }
-
-        .monaco-editor-background {
-            background-color: #000000;
+        .vs-dark .monaco-editor, .monaco-editor-background, .monaco-editor .inputarea.ime-input {
+            background-color: #000000 !important;
         }
 
         #tab-context-menu {
@@ -1405,35 +1402,49 @@ end)",
         }
 
         /// <summary>
-        /// Handles the injection action, initializing the Quorum API and deploying environment hooks.
+        /// Handles the injection action with Roblox process validation, QuorumAPI calls, and hook payload execution.
         /// </summary>
         private async void guna2Button3_Click(object sender, EventArgs e)
         {
-            if (isInjected) return;
+            if (isInjected)
+            {
+                FormMessageBox.Show("Already injected into Roblox.", "Luminescence", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             try
             {
+                var robloxProcesses = System.Diagnostics.Process.GetProcessesByName("RobloxPlayerBeta");
+                if (robloxProcesses.Length == 0)
+                {
+                    FormMessageBox.Show("Roblox process (RobloxPlayerBeta) is not running. Please launch Roblox first.", "Attachment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 bool attachSuccess = await Task.Run(() =>
                 {
                     try
                     {
                         QuorumAPI.QuorumModule.AttachAPI();
+                        System.Threading.Thread.Sleep(400);
                         return true;
                     }
                     catch (Exception innerEx)
                     {
                         System.Diagnostics.Debug.WriteLine("Attach Error: " + innerEx.Message);
+                        LogDiagnosticEvent("Injection Failure", innerEx.ToString());
                         return false;
                     }
                 });
 
                 if (!attachSuccess)
                 {
-                    FormMessageBox.Show("The attach API failed to initialize.", "Attachment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    FormMessageBox.Show("The attach API failed to initialize or connect to Roblox.", "Attachment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 isInjected = true;
+                LogDiagnosticEvent("Injection", "Successfully attached to Roblox process.");
 
                 System.Windows.Forms.Timer delayTimer = new System.Windows.Forms.Timer { Interval = 200 };
                 delayTimer.Tick += async (senderTimer, args) =>
@@ -1647,15 +1658,23 @@ end)",
                 ";
 
                 await Task.Run(() => { QuorumAPI.QuorumModule.ExecuteScript(injectionPayload); });
+                FormMessageBox.Show("Successfully injected and initialized environment hooks!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
+                isInjected = false;
                 FormMessageBox.Show("Failed to attach or execute: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private async void guna2Button8_Click(object sender, EventArgs e)
         {
+            if (!isInjected)
+            {
+                FormMessageBox.Show("Please inject into Roblox before executing scripts.", "Not Injected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (webView21 != null && webView21.CoreWebView2 != null)
             {
                 try

@@ -3,7 +3,7 @@
     <Platform Name="Any CPU" />
     <Platform Name="x64" />
   </Configurations>
-  <Project Path="Luminescence v1.03E/Luminescence v1.03E.csproj" Id="8d6791f4-ab55-466e-8d63-53c9c7db0ec7">
+  <Project Path="Luminescence v1.03E/Luminescence v1.05E.csproj" Id="8d6791f4-ab55-466e-8d63-53c9c7db0ec7">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
 </Solution>
