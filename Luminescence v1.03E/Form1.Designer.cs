@@ -57,6 +57,7 @@
             this.guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.scriptHubPanel = new Guna.UI2.WinForms.Guna2Panel();
+            this.btnMenuToggle = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
@@ -72,6 +73,7 @@
             // guna2DragControl1
             // 
             this.guna2DragControl1.DockIndicatorTransparencyValue = 0.6D;
+            this.guna2DragControl1.TargetControl = this;
             this.guna2DragControl1.UseTransparentDrag = true;
             // 
             // guna2DragControl2
@@ -86,7 +88,7 @@
             this.guna2Panel1.Controls.Add(this.guna2Button10);
             this.guna2Panel1.Controls.Add(this.guna2Button9);
             this.guna2Panel1.Controls.Add(this.guna2Button6);
-            this.guna2Panel1.Location = new System.Drawing.Point(13, 12);
+            this.guna2Panel1.Location = new System.Drawing.Point(12, 12);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(75, 374);
             this.guna2Panel1.TabIndex = 10;
@@ -263,17 +265,25 @@
             // 
             // lblSizeValue
             // 
-            this.lblSizeValue.Location = new System.Drawing.Point(0, 0);
+            this.lblSizeValue.AutoSize = true;
+            this.lblSizeValue.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.lblSizeValue.ForeColor = System.Drawing.Color.White;
+            this.lblSizeValue.Location = new System.Drawing.Point(25, 192);
             this.lblSizeValue.Name = "lblSizeValue";
-            this.lblSizeValue.Size = new System.Drawing.Size(100, 23);
-            this.lblSizeValue.TabIndex = 0;
+            this.lblSizeValue.Size = new System.Drawing.Size(130, 20);
+            this.lblSizeValue.TabIndex = 6;
+            this.lblSizeValue.Text = "Width: ... Height: ...";
             // 
             // lblSize
             // 
-            this.lblSize.Location = new System.Drawing.Point(0, 0);
+            this.lblSize.AutoSize = true;
+            this.lblSize.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.lblSize.ForeColor = System.Drawing.Color.White;
+            this.lblSize.Location = new System.Drawing.Point(25, 162);
             this.lblSize.Name = "lblSize";
-            this.lblSize.Size = new System.Drawing.Size(100, 23);
-            this.lblSize.TabIndex = 1;
+            this.lblSize.Size = new System.Drawing.Size(39, 20);
+            this.lblSize.TabIndex = 5;
+            this.lblSize.Text = "Size:";
             // 
             // toggleAlwaysOnTop
             // 
@@ -366,7 +376,7 @@
             this.guna2Button4.ForeColor = System.Drawing.Color.White;
             this.guna2Button4.Image = global::Luminescence_v1._03E.Properties.Resources.Clear;
             this.guna2Button4.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button4.Location = new System.Drawing.Point(3, 4);
+            this.guna2Button4.Location = new System.Drawing.Point(-1, 4);
             this.guna2Button4.Name = "guna2Button4";
             this.guna2Button4.Size = new System.Drawing.Size(46, 46);
             this.guna2Button4.TabIndex = 8;
@@ -385,7 +395,7 @@
             this.guna2Button5.ForeColor = System.Drawing.Color.White;
             this.guna2Button5.Image = global::Luminescence_v1._03E.Properties.Resources.folder;
             this.guna2Button5.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button5.Location = new System.Drawing.Point(55, 4);
+            this.guna2Button5.Location = new System.Drawing.Point(51, 4);
             this.guna2Button5.Name = "guna2Button5";
             this.guna2Button5.Size = new System.Drawing.Size(46, 46);
             this.guna2Button5.TabIndex = 4;
@@ -404,7 +414,7 @@
             this.guna2Button8.ForeColor = System.Drawing.Color.White;
             this.guna2Button8.Image = global::Luminescence_v1._03E.Properties.Resources.play_button_arrowhead;
             this.guna2Button8.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button8.Location = new System.Drawing.Point(107, 4);
+            this.guna2Button8.Location = new System.Drawing.Point(103, 4);
             this.guna2Button8.Name = "guna2Button8";
             this.guna2Button8.Size = new System.Drawing.Size(46, 46);
             this.guna2Button8.TabIndex = 7;
@@ -423,7 +433,7 @@
             this.guna2Button3.ForeColor = System.Drawing.Color.White;
             this.guna2Button3.Image = global::Luminescence_v1._03E.Properties.Resources.inject;
             this.guna2Button3.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button3.Location = new System.Drawing.Point(159, 4);
+            this.guna2Button3.Location = new System.Drawing.Point(155, 4);
             this.guna2Button3.Name = "guna2Button3";
             this.guna2Button3.Size = new System.Drawing.Size(46, 46);
             this.guna2Button3.TabIndex = 2;
@@ -432,6 +442,7 @@
             // scriptHubPanel
             // 
             this.scriptHubPanel.BorderRadius = 10;
+            this.scriptHubPanel.Controls.Add(this.btnMenuToggle);
             this.scriptHubPanel.Controls.Add(this.guna2Panel2);
             this.scriptHubPanel.Controls.Add(this.btnSearch);
             this.scriptHubPanel.Controls.Add(this.txtSearch);
@@ -442,6 +453,23 @@
             this.scriptHubPanel.Size = new System.Drawing.Size(631, 374);
             this.scriptHubPanel.TabIndex = 15;
             this.scriptHubPanel.Visible = false;
+            // 
+            // btnMenuToggle
+            // 
+            this.btnMenuToggle.Animated = true;
+            this.btnMenuToggle.BorderRadius = 10;
+            this.btnMenuToggle.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnMenuToggle.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnMenuToggle.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnMenuToggle.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnMenuToggle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btnMenuToggle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnMenuToggle.ForeColor = System.Drawing.Color.White;
+            this.btnMenuToggle.Image = global::Luminescence_v1._03E.Properties.Resources.setting;
+            this.btnMenuToggle.Location = new System.Drawing.Point(258, 20);
+            this.btnMenuToggle.Name = "btnMenuToggle";
+            this.btnMenuToggle.Size = new System.Drawing.Size(35, 30);
+            this.btnMenuToggle.TabIndex = 4;
             // 
             // guna2Panel2
             // 
@@ -575,9 +603,10 @@
         private Guna.UI2.WinForms.Guna2Panel bottomActionPanel;
         private Guna.UI2.WinForms.Guna2Panel scriptHubPanel;
         private System.Windows.Forms.Label lblScriptHubTitle;
-        private NoScrollFlowLayoutPanel flowScriptContainer;
+        private Luminescence_v1._03E.NoScrollFlowLayoutPanel flowScriptContainer;
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private Guna.UI2.WinForms.Guna2Button btnSearch;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna.UI2.WinForms.Guna2Button btnMenuToggle;
     }
 }

@@ -4,7 +4,7 @@
     {
       "Id": "tab_default",
       "Title": "Tab 1",
-      "Content": "print(\u0022Hello, Luminescence!\u0022)"
+      "Content": "loadstring(game:HttpGet(\u0022https://raw.githubusercontent.com/zryr/executor-test-panel/refs/heads/main/panel.lua\u0022))()"
     }
   ]
 }
