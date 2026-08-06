@@ -263,28 +263,6 @@
             this.settingsPanel.TabIndex = 13;
             this.settingsPanel.Visible = false;
             // 
-            // lblSizeValue
-            // 
-            this.lblSizeValue.AutoSize = true;
-            this.lblSizeValue.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.lblSizeValue.ForeColor = System.Drawing.Color.White;
-            this.lblSizeValue.Location = new System.Drawing.Point(25, 192);
-            this.lblSizeValue.Name = "lblSizeValue";
-            this.lblSizeValue.Size = new System.Drawing.Size(130, 20);
-            this.lblSizeValue.TabIndex = 6;
-            this.lblSizeValue.Text = "Width: ... Height: ...";
-            // 
-            // lblSize
-            // 
-            this.lblSize.AutoSize = true;
-            this.lblSize.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.lblSize.ForeColor = System.Drawing.Color.White;
-            this.lblSize.Location = new System.Drawing.Point(25, 162);
-            this.lblSize.Name = "lblSize";
-            this.lblSize.Size = new System.Drawing.Size(39, 20);
-            this.lblSize.TabIndex = 5;
-            this.lblSize.Text = "Size:";
-            // 
             // toggleAlwaysOnTop
             // 
             this.toggleAlwaysOnTop.Animated = true;
@@ -465,11 +443,11 @@
             this.btnMenuToggle.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.btnMenuToggle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnMenuToggle.ForeColor = System.Drawing.Color.White;
-            this.btnMenuToggle.Image = global::Luminescence_v1._03E.Properties.Resources.setting;
             this.btnMenuToggle.Location = new System.Drawing.Point(258, 20);
             this.btnMenuToggle.Name = "btnMenuToggle";
             this.btnMenuToggle.Size = new System.Drawing.Size(35, 30);
             this.btnMenuToggle.TabIndex = 4;
+            this.btnMenuToggle.Text = "≡";
             // 
             // guna2Panel2
             // 
