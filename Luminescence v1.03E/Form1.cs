@@ -1,12 +1,4 @@
-﻿// ============================================================================
-// Project: Luminescence v1.03E - Advanced Roblox Script Execution Environment
-// File: Form1.cs
-// Description: Main application form handling Monaco Editor integration via WebView2,
-//              dynamic tab persistence, ScriptHub API fetching with infinite scrolling,
-//              UNC compliance simulation layers, and robust application lifecycle management.
-// ============================================================================
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.IO;
 using System.Net.Http;
