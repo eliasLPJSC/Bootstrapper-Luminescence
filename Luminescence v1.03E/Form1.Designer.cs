@@ -44,8 +44,6 @@
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.settingsPanel = new Guna.UI2.WinForms.Guna2Panel();
-            this.lblSizeValue = new System.Windows.Forms.Label();
-            this.lblSize = new System.Windows.Forms.Label();
             this.toggleAlwaysOnTop = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.lblAlwaysOnTop = new System.Windows.Forms.Label();
             this.toggleUnlockFps = new Guna.UI2.WinForms.Guna2ToggleSwitch();
@@ -250,8 +248,6 @@
             // settingsPanel
             // 
             this.settingsPanel.BorderRadius = 10;
-            this.settingsPanel.Controls.Add(this.lblSizeValue);
-            this.settingsPanel.Controls.Add(this.lblSize);
             this.settingsPanel.Controls.Add(this.toggleAlwaysOnTop);
             this.settingsPanel.Controls.Add(this.lblAlwaysOnTop);
             this.settingsPanel.Controls.Add(this.toggleUnlockFps);
@@ -576,8 +572,6 @@
         private System.Windows.Forms.Label lblUnlockFps;
         private Guna.UI2.WinForms.Guna2ToggleSwitch toggleAlwaysOnTop;
         private System.Windows.Forms.Label lblAlwaysOnTop;
-        private System.Windows.Forms.Label lblSizeValue;
-        private System.Windows.Forms.Label lblSize;
         private Guna.UI2.WinForms.Guna2Panel bottomActionPanel;
         private Guna.UI2.WinForms.Guna2Panel scriptHubPanel;
         private System.Windows.Forms.Label lblScriptHubTitle;
