@@ -232,8 +232,8 @@ namespace Luminescence_v1._03E
                         Content = @"local StarterGui = game:GetService(""StarterGui"")
 
 StarterGui:SetCore(""SendNotification"", {
-    Title = ""Luminescence API"",
-    Text = ""Luminescence initialized successfully."",
+    Title = ""{ Luminescence }"",
+    Text = ""Luminescence initialized."",
     Icon = ""rbxthumb://type=Asset&id=76675993626416&w=150&h=150""
 })
 
